@@ -3,6 +3,14 @@ import { View, StyleSheet } from "react-native";
 import Header from "../../components/Header";
 import newsCountry from "../../api/fetchCountry";
 
+let topics = ["bitcoin", "economy", "global", "AI", "war"];
+
+function getRandomIntInclusive(min, max) {
+  var jajaa = max - min + 1;
+
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function Home() {
   const [country, setCountry] = useState("us");
 
@@ -11,7 +19,7 @@ function Home() {
       try {
         const todaysFetch = await newsCountry(country);
       } catch (error) {
-        console.log(error);
+        console.error("ERROR DEHOME", error);
       }
     };
 
@@ -28,7 +36,7 @@ function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 25,
+    paddingTop: 40,
     paddingHorizontal: 25,
   },
 });
