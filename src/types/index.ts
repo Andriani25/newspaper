@@ -1,7 +1,7 @@
 export type DataFetch = {
   image?: string;
   author?: string;
-  category?: Array<String>;
+  category?: string[];
   description?: string;
   url?: string;
   title?: string;

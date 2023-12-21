@@ -1,8 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 import { DataFetch } from "../../types";
 
-function DailyCard({ image, url, title, author, description, published }) {
+const DailyCard: FC<DataFetch> = function ({
+  image,
+  url,
+  title,
+  author,
+  description,
+  published,
+}) {
   return (
     <View style={styles.container}>
       <View>
@@ -15,7 +22,7 @@ function DailyCard({ image, url, title, author, description, published }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -4,27 +4,19 @@ import Header from "../../components/Header";
 import newsCountry from "../../api/fetchCountry";
 import newsDaily from "../../api/fetchDaily";
 import DailyCard from "../../components/DailyCard";
+import CountryCard from "../../components/CountrysCard";
 import { DataFetch } from "../../types";
-
-let topics = ["bitcoin", "economy", "global", "AI", "war"];
-
-function getRandomIntInclusive(min, max) {
-  var jajaa = max - min + 1;
-
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
 
 function Home() {
   const [country, setCountry] = useState("us");
   const [todaysItems, setTodaysItems] = useState<DataFetch>({});
-  const [countrysItems, setCountrysItems] = useState({});
+  const [countryItems, setCountryItems] = useState<DataFetch>({});
 
   useEffect(() => {
     const loadDailysFetch = async () => {
       try {
         const todaysFetch = await newsDaily();
         setTodaysItems(todaysFetch.news[0]);
-        console.log(todaysFetch.news[0]);
       } catch (error) {
         console.error("ERROR DE DAILY", error);
         setTodaysItems({});
@@ -33,8 +25,9 @@ function Home() {
 
     const loadCountrysFetch = async () => {
       try {
-        const countrysFetch = await newsCountry(country);
-        // console.log("COUNTRY", countrysFetch);
+        const countryFetch = await newsCountry(country);
+
+        setCountryItems(countryFetch.news);
       } catch (error) {
         console.error("ERROR DE COUNTRY", error);
       }
@@ -49,6 +42,7 @@ function Home() {
     <View style={styles.container}>
       <Header />
       <DailyCard {...todaysItems} />
+      <CountryCard {...countryItems} />
     </View>
   );
 }
