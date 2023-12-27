@@ -10,7 +10,7 @@ import { DataFetch } from "../../types";
 function Home() {
   const [country, setCountry] = useState("us");
   const [todaysItems, setTodaysItems] = useState<DataFetch>({});
-  const [countryItems, setCountryItems] = useState<DataFetch>({});
+  const [countryItems, setCountryItems] = useState<DataFetch[]>([]);
 
   useEffect(() => {
     const loadDailysFetch = async () => {
@@ -26,10 +26,11 @@ function Home() {
     const loadCountrysFetch = async () => {
       try {
         const countryFetch = await newsCountry(country);
-
+        console.log("fetch", country);
         setCountryItems(countryFetch.news);
       } catch (error) {
         console.error("ERROR DE COUNTRY", error);
+        setCountryItems([]);
       }
     };
 
@@ -42,7 +43,7 @@ function Home() {
     <View style={styles.container}>
       <Header />
       <DailyCard {...todaysItems} />
-      <CountryCard {...countryItems} />
+      <CountryCard countryItems={countryItems} country={country} />
     </View>
   );
 }

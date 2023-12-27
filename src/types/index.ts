@@ -8,4 +8,5 @@ export type DataFetch = {
   id?: string;
   published?: string;
   language?: string;
+  country?: string;
 };
