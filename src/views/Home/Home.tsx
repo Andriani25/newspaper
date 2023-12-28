@@ -26,7 +26,6 @@ function Home() {
     const loadCountrysFetch = async () => {
       try {
         const countryFetch = await newsCountry(country);
-        console.log("fetch", country);
         setCountryItems(countryFetch.news);
       } catch (error) {
         console.error("ERROR DE COUNTRY", error);

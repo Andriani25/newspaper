@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable, Modal } from "react-native";
 import { DataFetch } from "../../types";
 
 const DailyCard: FC<DataFetch> = function ({
@@ -13,12 +13,18 @@ const DailyCard: FC<DataFetch> = function ({
   return (
     <View style={styles.container}>
       <View>
-        <Image style={styles.image} source={{ uri: image }} />
+        {image === null ? (
+          <Image
+            style={styles.image}
+            source={require("../../../assets/default.png")}
+          />
+        ) : (
+          <Image style={styles.image} source={{ uri: image }} />
+        )}
+        <Text>{author}</Text>
         <Text style={styles.title}>{title}</Text>
+        <Text style={styles.text}>{description}</Text>
         <Text style={styles.date}>{published}</Text>
-        <View style={styles.buttonContainer}>
-          <Button title={"View"} />
-        </View>
       </View>
     </View>
   );
@@ -48,12 +54,14 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     fontWeight: "bold",
   },
+  text: {
+    fontWeight: "600",
+  },
   date: {
+    margin: 10,
     color: "black",
     fontSize: 10,
-  },
-  buttonContainer: {
-    alignItems: "flex-end",
+    fontWeight: "500",
   },
 });
 
