@@ -1,10 +1,15 @@
+import { StyleSheet, View, useColorScheme } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, View } from "react-native";
 import Home from "./src/views/Home";
 
 export default function App() {
+  const colorScheme = useColorScheme();
+
+  const themeContainerStyle =
+    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themeContainerStyle]}>
       <StatusBar style="auto" />
       <Home />
     </View>
@@ -14,6 +19,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f08080",
+  },
+  lightContainer: {
+    backgroundColor: "#C3CBA4",
+  },
+  darkContainer: {
+    backgroundColor: "#2B3A4A",
   },
 });
