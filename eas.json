@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 5.9.3"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_KEY": "-DZEOXtGzjdjBkZE8V_DkNi9y7HsiKPWDvuQzkm1MR81gk2e",
+        "EXPO_PUBLIC_API_URL": "https://api.currentsapi.services/v1/latest-news"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
