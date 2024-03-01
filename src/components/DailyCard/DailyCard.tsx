@@ -4,8 +4,10 @@ import {
   Text,
   StyleSheet,
   Image,
+  Button,
   ScrollView,
   useColorScheme,
+  Linking,
 } from "react-native";
 import { DataFetch } from "../../types";
 
@@ -14,6 +16,7 @@ const DailyCard: FC<DataFetch> = function ({
   title,
   author,
   description,
+  url,
   published,
 }) {
   const colorScheme = useColorScheme();
@@ -43,6 +46,7 @@ const DailyCard: FC<DataFetch> = function ({
         </Text>
         <Text style={[styles.title, themeTextStyle]}>{title}</Text>
         <Text style={[styles.text, themeTextStyle]}>{description}</Text>
+        <Button color="white" title="🔎" onPress={() => Linking.openURL(url)} />
         <Text style={[styles.date, themeTextStyle]}>{published}</Text>
       </ScrollView>
     </View>
@@ -92,6 +96,10 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 10,
     fontWeight: "500",
+  },
+  button: {
+    height: 100,
+    width: 100,
   },
 });
 

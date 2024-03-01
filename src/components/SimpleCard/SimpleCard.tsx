@@ -8,6 +8,8 @@ import {
   StyleSheet,
   ScrollView,
   useColorScheme,
+  Button,
+  Linking,
 } from "react-native";
 import { DataFetch } from "../../types";
 
@@ -16,6 +18,7 @@ const SimpleCard: FC<DataFetch> = function ({
   published,
   image,
   author,
+  url,
   description,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -51,6 +54,11 @@ const SimpleCard: FC<DataFetch> = function ({
               {author?.includes("<") ? (author = "Autor Desconocido") : author}
             </Text>
             <Text style={[styles.text, themeTextStyle]}>{description}</Text>
+            <Button
+              color="white"
+              title="🔎"
+              onPress={() => Linking.openURL(url)}
+            />
             <Text style={[styles.date, themeTextStyle]}>{published}</Text>
             <Pressable onPress={() => setModalVisible(false)}>
               <Image
